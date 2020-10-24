@@ -165,7 +165,7 @@
                                     <constraint firstAttribute="height" constant="150" id="hU6-qe-IwM"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success/failure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFg-9W-rkR" userLabel="Identification">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click record button to identify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFg-9W-rkR" userLabel="Identification">
                                 <rect key="frame" x="42" y="276" width="330" height="100"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="330" id="KiG-nr-8UC"/>
@@ -175,7 +175,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="real time audio to text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="43C-WJ-gMc" userLabel="Audio-To-Text View">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="43C-WJ-gMc" userLabel="Audio-To-Text View">
                                 <rect key="frame" x="27" y="408" width="360" height="275"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
