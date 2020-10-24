@@ -158,35 +158,58 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="person_qm" translatesAutoresizingMaskIntoConstraints="NO" id="He0-La-jWr">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person_qm" translatesAutoresizingMaskIntoConstraints="NO" id="He0-La-jWr">
                                 <rect key="frame" x="132" y="106" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="4VW-Sh-A7R"/>
+                                    <constraint firstAttribute="height" constant="150" id="hU6-qe-IwM"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Success/failure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFg-9W-rkR" userLabel="Identification">
-                                <rect key="frame" x="43" y="284" width="331" height="48"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Success/failure" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFg-9W-rkR" userLabel="Identification">
+                                <rect key="frame" x="42" y="276" width="330" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="330" id="KiG-nr-8UC"/>
+                                    <constraint firstAttribute="height" constant="100" id="op5-Ad-Dqy"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="real time audio to text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="43C-WJ-gMc" userLabel="Audio-To-Text View">
-                                <rect key="frame" x="33" y="408" width="351" height="274"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="real time audio to text" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="43C-WJ-gMc" userLabel="Audio-To-Text View">
+                                <rect key="frame" x="27" y="408" width="360" height="275"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="275" id="cMu-0s-75D"/>
+                                    <constraint firstAttribute="width" constant="360" id="zX8-7L-KJt"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZA-og-Bco" userLabel="Record Button">
-                                <rect key="frame" x="179" y="722" width="59" height="57"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZA-og-Bco" userLabel="Record Button">
+                                <rect key="frame" x="167" y="708" width="80" height="80"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="QOP-s9-K3R"/>
+                                    <constraint firstAttribute="height" constant="80" id="i8V-rM-tZO"/>
+                                </constraints>
                                 <state key="normal" image="largecircle.fill.circle" catalog="system">
-                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="50"/>
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="70"/>
                                 </state>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uYN-Dz-PtK"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MZA-og-Bco" firstAttribute="centerX" secondItem="1c1-8b-Etw" secondAttribute="centerX" id="ChJ-iC-15i"/>
+                            <constraint firstItem="uYN-Dz-PtK" firstAttribute="bottom" secondItem="MZA-og-Bco" secondAttribute="bottom" constant="20" id="Dmz-N5-MZl"/>
+                            <constraint firstItem="He0-La-jWr" firstAttribute="centerX" secondItem="1c1-8b-Etw" secondAttribute="centerX" id="Dqy-Gt-3fe"/>
+                            <constraint firstItem="lFg-9W-rkR" firstAttribute="top" secondItem="He0-La-jWr" secondAttribute="bottom" constant="20" id="FiD-mm-PQN"/>
+                            <constraint firstItem="43C-WJ-gMc" firstAttribute="top" secondItem="lFg-9W-rkR" secondAttribute="bottom" constant="32" id="c6E-xU-PP3"/>
+                            <constraint firstItem="lFg-9W-rkR" firstAttribute="centerX" secondItem="1c1-8b-Etw" secondAttribute="centerX" id="jDW-Sp-J1a"/>
+                            <constraint firstItem="lFg-9W-rkR" firstAttribute="top" secondItem="He0-La-jWr" secondAttribute="bottom" constant="20" id="k8E-RQ-Wzr"/>
+                            <constraint firstItem="He0-La-jWr" firstAttribute="top" secondItem="uYN-Dz-PtK" secondAttribute="top" constant="50" id="kvg-gp-EIS"/>
+                            <constraint firstItem="43C-WJ-gMc" firstAttribute="centerX" secondItem="1c1-8b-Etw" secondAttribute="centerX" id="tSq-f6-0Rl"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Speaker Identification" id="W0G-OC-bBr">
                         <barButtonItem key="rightBarButtonItem" title="Help" id="161-r5-haj"/>
