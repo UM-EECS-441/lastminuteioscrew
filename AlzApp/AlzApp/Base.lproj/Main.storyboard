@@ -192,7 +192,7 @@
                                     <constraint firstAttribute="width" constant="80" id="QOP-s9-K3R"/>
                                     <constraint firstAttribute="height" constant="80" id="i8V-rM-tZO"/>
                                 </constraints>
-                                <state key="normal" image="largecircle.fill.circle" catalog="system">
+                                <state key="normal" image="mic.circle" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="70"/>
                                 </state>
                             </button>
@@ -240,7 +240,7 @@
     </scenes>
     <resources>
         <image name="exclamationmark.circle" catalog="system" width="128" height="121"/>
-        <image name="largecircle.fill.circle" catalog="system" width="128" height="121"/>
+        <image name="mic.circle" catalog="system" width="128" height="121"/>
         <image name="person_qm" width="512" height="512"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <systemColor name="labelColor">
