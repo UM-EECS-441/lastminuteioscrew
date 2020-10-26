@@ -31,8 +31,8 @@ class IdentifyVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegat
     private var currState : StateMachine!
     @IBOutlet weak var recButton: UIButton!
     @IBOutlet weak var detailLabel: UILabel!
-    private let recIcon = UIImage(systemName: "largecircle.fill.circle")!
-    private let recstopIcon = UIImage(systemName: "stop.circle")!
+    private let recIcon = UIImage(systemName: "mic.circle")!
+    private let recstopIcon = UIImage(systemName: "mic.circle.fill")!
     
     override func viewDidLoad() {
         super.viewDidLoad()
