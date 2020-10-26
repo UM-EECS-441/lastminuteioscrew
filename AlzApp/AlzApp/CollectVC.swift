@@ -40,8 +40,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
     @IBOutlet weak var relationshipInput: UITextField!
     @IBOutlet weak var doneButton: UIButton!
     private var idSelected = 0
-    private var dataSource = ["Jonathan", "Joseph", "Jotaro", "Josuke", "Giorno"]
-    let users:[(id: Int, name: String)] = [(0,"New User"), (1,"Jonathan"), (2, "Joseph"), (5, "Giorno")]
+    private var speakers:[(id: Int, name: String)] = [(0,"New Speaker"), (6,"Jolyne"),(1,"Jonathan"), (3, "Jotaro"),(4, "Josuke")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,6 +79,8 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             preparePlayer()
             playTapped(playButton!)  // auto play
         }
+        
+  
     }
     func prepareRecorder() {
         // check permission first
@@ -111,11 +112,16 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
         return 1
     }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return users.count
+        
+        return speakers.count
     }
+    
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        idSelected = users[row].id as Int
-        if idSelected == 0{
+        return speakers[row].name
+    }
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        idSelected = speakers[row].id as Int
+        if (idSelected == 0){
             nameLabel.isHidden = false
             relationshipLabel.isHidden = false
             nameInput.isHidden = false
@@ -125,9 +131,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             relationshipLabel.isHidden = true
             nameInput.isHidden = true
             relationshipInput.isHidden = true
-            
         }
-        return users[row].name
     }
     
     // Audio related functions
