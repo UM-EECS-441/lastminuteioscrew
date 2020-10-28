@@ -1,0 +1,1 @@
+#§  return a list of speakers for this user
