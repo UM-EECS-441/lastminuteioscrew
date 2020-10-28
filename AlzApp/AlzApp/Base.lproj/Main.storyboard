@@ -12,21 +12,11 @@
         <!--Voice Collection-->
         <scene sceneID="aFi-BL-S0T">
             <objects>
-                <viewController storyboardIdentifier="Voice Collection" id="404-Mj-L6F" customClass="CollectVC" customModule="AlzApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CollectVC" id="404-Mj-L6F" customClass="CollectVC" customModule="AlzApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SV4-hs-JMK">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3v-4p-AUJ">
-                                <rect key="frame" x="47" y="124" width="320" height="150"/>
-                                <accessibility key="accessibilityConfiguration" identifier="picker" label="picker">
-                                    <bool key="isElement" value="YES"/>
-                                </accessibility>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="2qK-kq-SwR"/>
-                                    <constraint firstAttribute="height" constant="150" id="eW3-5z-hIW"/>
-                                </constraints>
-                            </pickerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select your identity" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ujz-qQ-NxW">
                                 <rect key="frame" x="92.5" y="96" width="229" height="20"/>
                                 <accessibility key="accessibilityConfiguration" identifier="detailLabel"/>
@@ -93,6 +83,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="nameDone:" destination="404-Mj-L6F" eventType="primaryActionTriggered" id="Nm6-pj-w4L"/>
+                                </connections>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jay-ww-Wph" userLabel="Relationship Input">
                                 <rect key="frame" x="201" y="357" width="166" height="34"/>
@@ -103,6 +96,9 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <action selector="relationshipDone:" destination="404-Mj-L6F" eventType="primaryActionTriggered" id="uXr-N4-32Y"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6s-KU-kyR">
                                 <rect key="frame" x="310" y="640" width="63" height="36"/>
@@ -142,6 +138,16 @@
                                     <action selector="ffwdTapped:" destination="404-Mj-L6F" eventType="touchUpInside" id="zy7-W5-Gyh"/>
                                 </connections>
                             </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n3v-4p-AUJ">
+                                <rect key="frame" x="47" y="124" width="320" height="150"/>
+                                <accessibility key="accessibilityConfiguration" identifier="picker" label="picker">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="2qK-kq-SwR"/>
+                                    <constraint firstAttribute="height" constant="150" id="eW3-5z-hIW"/>
+                                </constraints>
+                            </pickerView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gL0-gK-jKf"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -177,7 +183,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Voice Collection" id="Qgh-zO-4yj">
-                        <barButtonItem key="rightBarButtonItem" title="Help" id="eeO-x8-Cwv"/>
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="eeO-x8-Cwv">
+                            <connections>
+                                <action selector="collectHelpTapped:" destination="404-Mj-L6F" id="5g2-tZ-ZKK"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="deleteButton" destination="hYe-5B-FLt" id="RB3-R2-Wyv"/>
@@ -269,7 +279,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="140" scale="default"/>
                                 </state>
                                 <connections>
-                                    <segue destination="yoq-gv-rqx" kind="presentation" id="dWV-sC-5et"/>
+                                    <segue destination="yoq-gv-rqx" kind="presentation" identifier="CollectSegue" id="dWV-sC-5et"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jPG-Zp-H7H">
@@ -283,7 +293,7 @@
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="140"/>
                                 </state>
                                 <connections>
-                                    <segue destination="ciz-M7-doq" kind="presentation" id="fVF-L1-ar0"/>
+                                    <segue destination="ciz-M7-doq" kind="presentation" identifier="Identify Segue" id="fVF-L1-ar0"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your voiceprint to help us identify you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFm-z6-a0k">
@@ -336,6 +346,9 @@
                             <constraint firstItem="q9x-LZ-K0E" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="zmU-b0-y2t"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="collectButton" destination="q9x-LZ-K0E" id="SPW-ya-tay"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -407,7 +420,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Speaker Identification" id="W0G-OC-bBr">
-                        <barButtonItem key="rightBarButtonItem" title="Help" id="161-r5-haj"/>
+                        <barButtonItem key="rightBarButtonItem" title="Help" id="161-r5-haj">
+                            <connections>
+                                <action selector="identifyHelpTapped:" destination="TlA-kB-xJD" id="9lV-y3-tpe"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="detailLabel" destination="lFg-9W-rkR" id="E8S-e7-gjh"/>
@@ -418,10 +435,10 @@
             </objects>
             <point key="canvasLocation" x="2650.7246376811595" y="93.75"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Identify Nav-->
         <scene sceneID="qvD-XT-DHp">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ciz-M7-doq" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="IdentifyNav" automaticallyAdjustsScrollViewInsets="NO" id="ciz-M7-doq" customClass="identifyNav" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Loi-58-EDb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
@@ -436,10 +453,10 @@
             </objects>
             <point key="canvasLocation" x="1868.1159420289857" y="93.75"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Collect Nav-->
         <scene sceneID="gEJ-Vr-JY7">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yoq-gv-rqx" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="CollectNav" automaticallyAdjustsScrollViewInsets="NO" id="yoq-gv-rqx" customClass="collectNav" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="QBs-tH-y2R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>

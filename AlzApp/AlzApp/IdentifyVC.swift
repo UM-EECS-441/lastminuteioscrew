@@ -18,7 +18,6 @@ import AVFoundation
 
 class IdentifyVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
     // Audio-related variables
-    
     var audioString = ""
     private var audioSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder!
@@ -103,7 +102,40 @@ class IdentifyVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegat
             didRecord = true
             detailLabel.text = "Waiting for results"
             recButton.isHidden = true
+            let json: [String: Any] = ["audio": audioString]
+            let jsonData = try? JSONSerialization.data(withJSONObject: json)
+
+            var request = URLRequest(url: URL(string: "https://161.35.116.242/identify/")!)
+            request.httpMethod = "POST"
+            request.httpBody = jsonData
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                do {
+                    let json = try JSONSerialization.jsonObject(with: data!) as! [String:String]
+                    let name = json["name"]!
+                    let relationship = json["relationship"]!
+                    DispatchQueue.main.async {
+                        self.detailLabel.text = "Name: " + name + "\n\nRelationship: " + relationship
+                        self.detailLabel.numberOfLines = 3
+                    }
+                    
+                } catch let error as NSError {
+                    print(error)
+                }
+                self.reset()
+            }
+            task.resume()
+
         }
+    }
+    @IBAction func identifyHelpTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "Help", message: "Welcome to Speaker Identification. Press the record button to record your voice. Press it again to send the voice clip to our identification algorithm. If we didn't correctly identify you, head to the voice collection scene to help us fine-tune our algorithm.", preferredStyle: UIAlertController.Style.alert)
+
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
     @IBAction func recTapped(_ sender: Any) {
         if (currState == StateMachine.recording) {
@@ -111,6 +143,17 @@ class IdentifyVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegat
         } else {
             startRecording()
         }
+    }
+    func reset(){
+        audioString = ""
+        currState = StateMachine.start
+        prepareRecorder()
+        DispatchQueue.main.async {
+            self.recButton.setImage(self.recIcon, for: .normal)
+            self.recButton.isHidden = false
+        }
+
+
     }
     
 }

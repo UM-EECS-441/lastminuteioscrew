@@ -10,7 +10,8 @@ import AVFoundation
 
 class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource, AVAudioRecorderDelegate, AVAudioPlayerDelegate{
     // Audio-related variables
-    weak var returnDelegate : ReturnDelegate?  // to pass return result to *caller*
+    
+
     private var audioString = ""
     private var audioSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder!
@@ -40,11 +41,13 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
     @IBOutlet weak var relationshipInput: UITextField!
     @IBOutlet weak var doneButton: UIButton!
     private var idSelected = 0
-    private var speakers:[(id: Int, name: String)] = [(0,"New Speaker"), (6,"Jolyne"),(1,"Jonathan"), (3, "Jotaro"),(4, "Josuke")]
+    var speakers:[(id: Int, name: String)] = [(0,"New Speaker")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+
         picker.delegate = self
         picker.dataSource = self
         audioSession = AVAudioSession.sharedInstance()
@@ -56,9 +59,6 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             print("viewDidLoad: failed to setup session")
             dismiss(animated: true, completion: nil)
         }
-
-
-
         func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
             print("Error encoding audio: \(error!.localizedDescription)")
             finishRecording(success: false)
@@ -79,6 +79,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             preparePlayer()
             playTapped(playButton!)  // auto play
         }
+
         
   
     }
@@ -200,7 +201,26 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             startRecording()
         }
     }
+    
+    @IBAction func nameDone(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    @IBAction func relationshipDone(_ sender: UITextField) {
+        sender.resignFirstResponder()
+    }
+    
     @IBAction func doneTapped(_ sender: Any) {
+        
+        if (idSelected == 0 && (!nameInput.hasText || !relationshipInput.hasText)){
+            let alert = UIAlertController(title: "Alert", message: "Please enter both your name and relationship before submitting.", preferredStyle: UIAlertController.Style.alert)
+
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
         if (didRecord == true) {
             do {
                 audioString = try Data(contentsOf: audioFile).base64EncodedString(options: .lineLength64Characters)
@@ -210,10 +230,42 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             }
             audioRecorder.deleteRecording()  // clean up
         }
-        returnDelegate?.didReturn(audioString)
         
+        let json: [String: Any] = ["id":idSelected,
+                                   "name": nameInput.text ?? "Anonymous",
+                                   "relationship": relationshipInput.text ?? "Unknown",
+                                   "audio": audioString]
+        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+        
+        var request = URLRequest(url: URL(string: "https://161.35.116.242/addVoice/")!)
+        request.httpMethod = "POST"
+        request.httpBody = jsonData
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let _ = data, error == nil else {
+                print("NETWORKING ERROR")
+                return
+            }
+            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+                print("HTTP STATUS: \(httpStatus.statusCode)")
+                return
+            }
+        }
+        task.resume()
+        NotificationCenter.default.post(name: Notification.Name(rawValue: "fetchAfterSubmit"), object: nil)
         dismiss(animated: true, completion: nil)
     }
+    @IBAction func collectHelpTapped(_ sender: Any) {
+        let alert = UIAlertController(title: "Help", message: "Welcome to Voice Collection. Submit your voice clips to help us identify you. If you are a new speaker, please submit your name and relationship to the user along with the voice clip.", preferredStyle: UIAlertController.Style.alert)
+
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
     @IBAction func playTapped(_ sender: Any) {
         if (currState == StateMachine.playing) {
             currState = StateMachine.paused
@@ -272,9 +324,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
 
     }
 
+
     
 }
 
-protocol ReturnDelegate: UIViewController {
-    func didReturn(_ result: String)
-}
