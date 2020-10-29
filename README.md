@@ -26,6 +26,7 @@ macos: "brew install sqlite3 curl"
 3. run "sqlite3 var/forgetMeNot.sqlite3 < sql/schema.sql" 
 4. run "sqlite3 var/forgetMeNot.sqlite3 < sql/data.sql" 
 5. activate your virtual environment 
-6. run "pip install -e ." 
-7. start the flask app with ./bin/forgetMeNotRun
+6. run "pip install -r requirements.txt"
+7. run "pip install -e ." 
+8. start the flask app with ./bin/forgetMeNotRun
 
