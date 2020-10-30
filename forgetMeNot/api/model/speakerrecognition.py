@@ -118,7 +118,6 @@ def read_wav(fname):
         signal = signal[:,0]
     return fs, signal
 
-
 def get_args():
     desc = "Speaker Recognition Command Line Tool"
     epilog = """

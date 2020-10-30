@@ -1,7 +1,7 @@
 import pickle
 from collections import defaultdict
-from skgmm import GMMSet
-from features import get_feature
+from forgetMeNot.api.model.skgmm import GMMSet
+from forgetMeNot.api.model.features import get_feature
 import time
 
 class ModelInterface:
