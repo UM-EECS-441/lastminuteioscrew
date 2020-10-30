@@ -5,8 +5,8 @@ import sys
 import itertools
 import glob
 import argparse
-from utils import read_wav
-from interface import ModelInterface
+from forgetMeNot.api.model.utils import read_wav
+from forgetMeNot.api.model.interface import ModelInterface
 
 def get_args():
     desc = "Speaker Recognition Command Line Tool"
