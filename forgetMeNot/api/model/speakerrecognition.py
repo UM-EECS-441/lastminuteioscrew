@@ -172,12 +172,12 @@ def task_enroll(input_dirs, output_model):
                 print("wav %s has been enrolled"%(wav))
             except Exception as e:
                 print(wav + " error %s"%(e))
-                return False
+                return e
 
 
     m.train()
     m.dump(output_model)
-    return True
+    return nil
 
 def task_predict(input_files, input_model):
     # load func copy and pasted

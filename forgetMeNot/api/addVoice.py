@@ -1,6 +1,7 @@
 """REST API for getting speakers."""
 import flask
 from flask import request
+import os
 
 import forgetMeNot
 from forgetMeNot import model
@@ -15,15 +16,19 @@ def add_voice():
     #audio_encode = request.get_json()['audio_string']
     #wav_file = open(name + "/temp.wav", "wb")
     #decode_string = base64.b64decode(audio_encode)
-    #wav_file.write(decode_string)   
+    #wav_file.write(decode_string)
 
-    enrolled = task_enroll("/bea/", "model.out")
-    
+    path = str(os.path.abspath(os.getcwd()) + "/forgetMeNot/api")
+
+    # context = {}
+    # context['success'] = path
+    # return flask.jsonify(**context)
+
+    enrolled = task_enroll(path + "/data/bea", path + "/model.out")
+
     status = "true"
     if(not enrolled):
         status = "false"
     context = {}
-    context['success'] = status
+    context['success'] = str(enrolled)
     return flask.jsonify(**context)
-
-
