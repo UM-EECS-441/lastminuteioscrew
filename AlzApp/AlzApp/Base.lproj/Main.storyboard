@@ -49,6 +49,9 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record your voice" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hjs-f2-Dpa">
                                 <rect key="frame" x="128.5" y="441" width="157" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="y8R-NH-9E5"/>
                                 </constraints>
@@ -58,6 +61,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AJX-vC-ZDp">
                                 <rect key="frame" x="119" y="306" width="52" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="6zL-Jg-BhI"/>
                                 </constraints>
@@ -67,6 +73,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relationship" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bY3-lt-y3g">
                                 <rect key="frame" x="63" y="367" width="108" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="6mT-md-U9i"/>
                                 </constraints>
@@ -217,7 +226,9 @@
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forget Me Not" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ATY-y1-CRB">
                                 <rect key="frame" x="29" y="95" width="356" height="70.5"/>
-                                <accessibility key="accessibilityConfiguration" identifier="mainTitle"/>
+                                <accessibility key="accessibilityConfiguration" identifier="mainTitle">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="250" constant="414" id="FAX-Gg-fIr"/>
                                     <constraint firstAttribute="height" constant="70.5" id="T6y-KX-gbI"/>
@@ -229,6 +240,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Forget Me Not." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9IQ-fN-75t">
                                 <rect key="frame" x="87" y="244" width="240" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" priority="250" constant="240" id="auA-Wv-gDW"/>
                                     <constraint firstAttribute="height" constant="24" id="deI-xh-SQS"/>
@@ -239,6 +253,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We'll help you identify who's speaking. " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gcD-fj-C4e">
                                 <rect key="frame" x="36" y="286" width="342" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="Jj9-ha-Cgk"/>
                                     <constraint firstAttribute="width" priority="250" constant="342" id="uf0-gB-BR8"/>
@@ -249,6 +266,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voice Collection" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Csj-O9-T88">
                                 <rect key="frame" x="40" y="469" width="141" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="141" id="am2-6z-11H"/>
                                     <constraint firstAttribute="height" constant="24" id="fiz-27-YKx"/>
@@ -259,6 +279,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Speaker ID" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HIn-PC-MxR">
                                 <rect key="frame" x="273" y="469" width="96" height="24"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="96" id="mv4-i7-0xZ"/>
                                     <constraint firstAttribute="height" constant="24" id="w0k-Wv-fYD"/>
@@ -298,6 +321,9 @@
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create your voiceprint to help us identify you" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JFm-z6-a0k">
                                 <rect key="frame" x="30" y="665" width="175" height="74"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="74" id="6Cq-kE-lk0"/>
                                     <constraint firstAttribute="width" constant="175" id="q8l-K5-USK"/>
@@ -308,6 +334,9 @@
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identify who's speaking" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5yi-RL-bHa">
                                 <rect key="frame" x="262" y="676" width="112" height="53"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="53" id="Lh9-Vu-3ek"/>
                                     <constraint firstAttribute="width" constant="112" id="My7-5c-L7Z"/>
@@ -372,6 +401,9 @@
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Click record button to identify" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lFg-9W-rkR" userLabel="Identification">
                                 <rect key="frame" x="42" y="276" width="330" height="100"/>
+                                <accessibility key="accessibilityConfiguration">
+                                    <accessibilityTraits key="traits" staticText="YES" notEnabled="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="330" id="KiG-nr-8UC"/>
                                     <constraint firstAttribute="height" constant="100" id="op5-Ad-Dqy"/>
@@ -380,17 +412,6 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="43C-WJ-gMc" userLabel="Audio-To-Text View">
-                                <rect key="frame" x="27" y="408" width="360" height="275"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="275" id="cMu-0s-75D"/>
-                                    <constraint firstAttribute="width" constant="360" id="zX8-7L-KJt"/>
-                                </constraints>
-                                <color key="textColor" systemColor="labelColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                            </textView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MZA-og-Bco" userLabel="Record Button">
                                 <rect key="frame" x="167" y="708" width="80" height="80"/>
                                 <constraints>
@@ -412,11 +433,9 @@
                             <constraint firstItem="uYN-Dz-PtK" firstAttribute="bottom" secondItem="MZA-og-Bco" secondAttribute="bottom" constant="20" id="Dmz-N5-MZl"/>
                             <constraint firstItem="He0-La-jWr" firstAttribute="centerX" secondItem="1c1-8b-Etw" secondAttribute="centerX" id="Dqy-Gt-3fe"/>
                             <constraint firstItem="lFg-9W-rkR" firstAttribute="top" secondItem="He0-La-jWr" secondAttribute="bottom" constant="20" id="FiD-mm-PQN"/>
-                            <constraint firstItem="43C-WJ-gMc" firstAttribute="top" secondItem="lFg-9W-rkR" secondAttribute="bottom" constant="32" id="c6E-xU-PP3"/>
                             <constraint firstItem="lFg-9W-rkR" firstAttribute="centerX" secondItem="1c1-8b-Etw" secondAttribute="centerX" id="jDW-Sp-J1a"/>
                             <constraint firstItem="lFg-9W-rkR" firstAttribute="top" secondItem="He0-La-jWr" secondAttribute="bottom" constant="20" id="k8E-RQ-Wzr"/>
                             <constraint firstItem="He0-La-jWr" firstAttribute="top" secondItem="uYN-Dz-PtK" secondAttribute="top" constant="50" id="kvg-gp-EIS"/>
-                            <constraint firstItem="43C-WJ-gMc" firstAttribute="centerX" secondItem="1c1-8b-Etw" secondAttribute="centerX" id="tSq-f6-0Rl"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Speaker Identification" id="W0G-OC-bBr">
