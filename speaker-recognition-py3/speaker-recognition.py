@@ -69,10 +69,14 @@ def task_enroll(input_dirs, output_model):
 
 def task_predict(input_files, input_model):
     m = ModelInterface.load(input_model)
+    var label, score
     for f in glob.glob(os.path.expanduser(input_files)):
+        # right now this is a hack assuming we only have one input file
+
         fs, signal = read_wav(f)
         label, score = m.predict(fs, signal)
         print (f, '->', label, ", score->", score)
+    return "", 1
 
 
 # added from utils
