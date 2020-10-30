@@ -253,6 +253,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
         }
         task.resume()
         NotificationCenter.default.post(name: Notification.Name(rawValue: "fetchAfterSubmit"), object: nil)
+        self.speakers = []
         dismiss(animated: true, completion: nil)
     }
     @IBAction func collectHelpTapped(_ sender: Any) {

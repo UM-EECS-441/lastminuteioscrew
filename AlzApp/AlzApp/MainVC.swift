@@ -16,9 +16,11 @@ class MainVC: UIViewController{
         DispatchQueue.main.async {
             self.collectButton.isEnabled = false
         }
-        DispatchQueue.main.async {
+        
+        let delayTime = DispatchTime.now() + 1.0
+        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
             self.getSpeakers()
-        }
+        })
     }
     
     
@@ -40,13 +42,13 @@ class MainVC: UIViewController{
             let collectVC = navVC?.viewControllers.first as! CollectVC
             collectVC.speakers = main_speakers
         }
+        
 
     }
     func getSpeakers() {
         let requestURL = "https://161.35.116.242/getSpeakers/"
         var request = URLRequest(url: URL(string: requestURL)!)
         request.httpMethod = "GET"
-        
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             do {
                 self.main_speakers = [(0,"New Speaker")]
@@ -65,6 +67,7 @@ class MainVC: UIViewController{
             
         }
         task.resume()
+        
     }
 }
 
