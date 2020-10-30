@@ -13,17 +13,17 @@ import time
 from python_speech_features import mfcc
 import numpy as np
 
-def get_feature(fs, signal):
-    mfcc_feature = mfcc(signal, fs)
-    if len(mfcc_feature) == 0:
-        print >> sys.stderr, "ERROR.. failed to extract mfcc feature:", len(signal)
-    return mfcc_feature
-
 # from skgmm.py
 from sklearn.mixture import GaussianMixture
 import operator
 import numpy as np
 import math
+
+def get_feature(fs, signal):
+    mfcc_feature = mfcc(signal, fs)
+    if len(mfcc_feature) == 0:
+        print >> sys.stderr, "ERROR.. failed to extract mfcc feature:", len(signal)
+    return mfcc_feature
 
 class GMMSet:
 
@@ -104,7 +104,7 @@ class ModelInterface:
     @staticmethod
     def load(fname):
         """ load from a dumped model file"""
-        with open(fname, 'rb') as f:
+        with open(fname, 'r') as f:
             R = pickle.load(f)
             R.gmmset.after_pickle()
             return R
@@ -180,12 +180,14 @@ def task_enroll(input_dirs, output_model):
     return True
 
 def task_predict(input_files, input_model):
+    # load func copy and pasted
     m = ModelInterface.load(input_model)
     for f in glob.glob(os.path.expanduser(input_files)):
         fs, signal = read_wav(f)
         label, score = m.predict(fs, signal)
         print (f, '->', label, ", score->", score)
-        return (label, score)
+
+    return ("", .8)
 
 
 
