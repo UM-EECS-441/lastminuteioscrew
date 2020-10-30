@@ -114,10 +114,20 @@ class IdentifyVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegat
                     let json = try JSONSerialization.jsonObject(with: data!) as! [String:String]
                     let name = json["name"]!
                     let relationship = json["relationship"]!
-                    DispatchQueue.main.async {
-                        self.detailLabel.text = "Name: " + name + "\n\nRelationship: " + relationship
-                        self.detailLabel.numberOfLines = 3
+                    
+                    if !name.isEmpty{
+                        DispatchQueue.main.async {
+                            self.detailLabel.text = "Name: " + name + "\n\nRelationship: " + relationship
+                            self.detailLabel.numberOfLines = 3
+                        }
+                        
+                    }else{
+                        DispatchQueue.main.async {
+                            self.detailLabel.text = "Oops! We couldn't identify speaker. Please navigate to Voice Collection to help us fine tune our algorithm."
+                            self.detailLabel.numberOfLines = 3
+                        }
                     }
+
                     
                 } catch let error as NSError {
                     print(error)
