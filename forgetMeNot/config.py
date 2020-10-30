@@ -16,4 +16,5 @@ FORGETMENOT_ROOT = pathlib.Path(__file__).resolve().parent.parent
 # Database file is var/insta485.sqlite3
 DATABASE_FILENAME = FORGETMENOT_ROOT/'var'/'insta485.sqlite3'
 # Model filepath
-MODEL_FILEPATH = FORGETMENOT_ROOT/'forgetMeNot'/'api'
+# MODEL_FILEPATH = FORGETMENOT_ROOT/'forgetMeNot'/'api'
+MODEL_FILEPATH = FORGETMENOT_ROOT/'speaker-recognition-py3'
