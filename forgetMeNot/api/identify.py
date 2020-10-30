@@ -1,5 +1,6 @@
 """REST API for getting speakers."""
 import flask
+import os
 from flask import request
 
 import forgetMeNot
@@ -26,8 +27,8 @@ def identify():
     threshold = .5
     if score < threshold:
         label = "Unknown: Score below " + str(threshold)
-    
+
     context = {}
     context['label'] = label
-    context['score'] = score 
+    context['score'] = score
     return flask.jsonify(**context)
