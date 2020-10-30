@@ -4,17 +4,23 @@ from flask import request
 
 import forgetMeNot
 from forgetMeNot import model
-from forgetMeNot.api.model.speakerrecognition import task_predict
+from forgetMeNot.api.helpers import task_predict
 
 import base64
+import os
 
-@forgetMeNot.app.route('/api/identify', methods=["GET"])
+@forgetMeNot.app.route('/api/identify', methods=["POST"])
 def identify():
-    #audio_encode = request.get_json()['audio_string']
-    #wav_file = open("temp.wav", "wb")
-    #decode_string = base64.b64decode(audio_encode)
-    #wav_file.write(decode_string)   
+    audio_encode = request.get_json()['audio']
+    
     path = forgetMeNot.app.config['MODEL_FILEPATH']
+    if os.path.exists(str(path) + "/temp.wav"):
+        os.remove(str(path) + "/temp.wav")
+    
+    wav_file = open(str(path) + "/temp.wav", "wb")
+    decode_string = base64.b64decode(audio_encode + "=========")
+    wav_file.write(decode_string)   
+    
     label, score = task_predict(str(path) + "/temp.wav", str(path) + "/model.out")
 
     threshold = .5
