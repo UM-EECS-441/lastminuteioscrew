@@ -17,22 +17,29 @@ class MainVC: UIViewController{
             self.collectButton.isEnabled = false
         }
         
-        let delayTime = DispatchTime.now() + 1.0
-        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+        DispatchQueue.main.async {
             self.getSpeakers()
-        })
+        }
+        
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+
         fetchData()
         NotificationCenter.default.addObserver(self, selector: #selector(fetchAfterSubmit(_:)), name: Notification.Name(rawValue: "fetchAfterSubmit"), object: nil)
     }
-    
+
     @objc func fetchAfterSubmit(_ notification: Notification) {
-        fetchData()
+        DispatchQueue.main.async {
+            self.collectButton.isEnabled = false
+        }
+        let delayTime = DispatchTime.now() + 1.5
+        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+            self.getSpeakers()
+        })
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
