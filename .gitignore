@@ -17,3 +17,8 @@ venv3/
 .vscode
 .ropeproject/
 .vscode/
+xcuserdata/
+*.hmap
+*.ipa
+*.xcworkspace
+*.xcuserstate
