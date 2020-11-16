@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17505"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--MainVC-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController storyboardIdentifier="Main Menu" id="BYZ-38-t0r" customClass="MainVC" customModule="AlzAppV2" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forget Me Not" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JAk-RT-cHM">
+                                <rect key="frame" x="55.5" y="68" width="303" height="95"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="95" id="3Q7-6d-kBe"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="50"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W6J-wL-wfb">
+                                <rect key="frame" x="136.5" y="280" width="141" height="136"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="136" id="egu-wK-2dK"/>
+                                </constraints>
+                                <state key="normal" image="mic.circle" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="120"/>
+                                </state>
+                                <connections>
+                                    <action selector="recTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K34-D3-CrN"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the button" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yE-LC-2AP">
+                                <rect key="frame" x="123.5" y="453" width="167.5" height="90"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="90" id="Gpx-QF-gpA"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="27"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="W6J-wL-wfb" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7dr-85-MZp"/>
+                            <constraint firstItem="3yE-LC-2AP" firstAttribute="top" secondItem="W6J-wL-wfb" secondAttribute="bottom" constant="37" id="BRd-zE-f9P"/>
+                            <constraint firstItem="JAk-RT-cHM" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GFy-7h-oth"/>
+                            <constraint firstItem="3yE-LC-2AP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="PNj-Fz-m7K"/>
+                            <constraint firstItem="JAk-RT-cHM" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="24" id="RuS-wd-DOb"/>
+                            <constraint firstItem="W6J-wL-wfb" firstAttribute="top" secondItem="JAk-RT-cHM" secondAttribute="bottom" constant="117" id="qa3-JT-STe"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="detailLabel" destination="3yE-LC-2AP" id="iah-hG-Pyr"/>
+                        <outlet property="recButton" destination="W6J-wL-wfb" id="hs4-5f-ehA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-197.10144927536234" y="93.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="mic.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
