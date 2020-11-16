@@ -231,13 +231,33 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             audioRecorder.deleteRecording()  // clean up
         }
         
-        let json: [String: Any] = ["id":idSelected,
-                                   "name": nameInput.text ?? "Anonymous",
-                                   "relationship": relationshipInput.text ?? "Unknown",
+//        let json: [String: Any] = ["id":idSelected,
+//                                   "name": nameInput.text ?? "Anonymous",
+//                                   "relationship": relationshipInput.text ?? "Unknown",
+//                                   "audio": audioString]
+//        let jsonData = try? JSONSerialization.data(withJSONObject: json)
+//
+//        var request = URLRequest(url: URL(string: "https://161.35.116.242/addVoice/")!)
+//        request.httpMethod = "POST"
+//        request.httpBody = jsonData
+//
+//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//            guard let _ = data, error == nil else {
+//                print("NETWORKING ERROR")
+//                return
+//            }
+//            if let httpStatus = response as? HTTPURLResponse, httpStatus.statusCode != 200 {
+//                print("HTTP STATUS: \(httpStatus.statusCode)")
+//                return
+//            }
+//        }
+//        task.resume()
+        
+        let json: [String: Any] = ["name": nameInput.text ?? "Anonymous",
                                    "audio": audioString]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
         
-        var request = URLRequest(url: URL(string: "https://161.35.116.242/addVoice/")!)
+        var request = URLRequest(url: URL(string: "http://ec2-3-138-155-246.us-east-2.compute.amazonaws.com/api/addVoice")!)
         request.httpMethod = "POST"
         request.httpBody = jsonData
 
@@ -252,6 +272,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             }
         }
         task.resume()
+        
         NotificationCenter.default.post(name: Notification.Name(rawValue: "fetchAfterSubmit"), object: nil)
         self.speakers = []
         dismiss(animated: true, completion: nil)
