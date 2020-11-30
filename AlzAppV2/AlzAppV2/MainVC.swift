@@ -156,9 +156,19 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
         
         audioRecorder.record()
     }
+    func writeAudioString(){
+        if (didRecord == true) {
+            do {
+                audioString = try Data(contentsOf: audioFile).base64EncodedString(options: .lineLength64Characters)
+            }
+            catch let error as NSError {
+                print(error.localizedDescription)
+            }
+            audioRecorder.deleteRecording()  // clean up
+        }
+    }
     func finishRecording(success: Bool) {
         audioRecorder.stop()
-        
         currState = StateMachine.start
         recButton.setImage(recIcon, for: .normal)
 
@@ -166,6 +176,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
             print("finishRecording: failed to record")
         } else {
             didRecord = true
+            writeAudioString()
             detailLabel.text = "Waiting for results"
             recButton.setImage(recIcon, for: .normal)
             recButton.isEnabled = false
@@ -178,10 +189,10 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
 
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data!) as! [String:String]
-                    self.nameString = json["name"]!
-                    self.relationshipString = json["relationship"]!
-                    self.photoString = json["photo"]!
+                    let json = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                    self.nameString = json["name"] as! String
+                    self.relationshipString = json["relationship"] as! String
+                    self.photoString = json["photo"] as!String
                     //let relationship = json["relationship"]!
                     
                     if !self.nameString.isEmpty{
