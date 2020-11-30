@@ -8,6 +8,15 @@
 import Foundation
 import AVFoundation
 import UIKit
+
+struct IdResponse: Decodable {
+    var name: String
+    var relationship: String
+    var photo:String
+    var label:String
+    var score:String
+}
+
 class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
     var main_speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(0,"New Speaker","Unknown","")]
 
@@ -131,6 +140,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
         }
         let settings = [
             AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+            //AVFormatIDKey: Int(kAudioFormatMPEGLayer3),
             AVSampleRateKey: 12000,
             AVNumberOfChannelsKey: 1,
             AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
@@ -183,32 +193,43 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
             let json: [String: Any] = ["audio": audioString]
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
 
-            var request = URLRequest(url: URL(string: "https://161.35.116.242/identifyV2/")!)
-            request.httpMethod = "POST"
-            request.httpBody = jsonData
+            var identify_request = URLRequest(url: URL(string: "https://161.35.116.242/identifyV2/")!)
+            identify_request.httpMethod = "POST"
+            identify_request.httpBody = jsonData
 
-            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            let task = URLSession.shared.dataTask(with: identify_request) { (data, response, error) in
                 do {
-                    let json = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
-                    self.nameString = json["name"] as! String
-                    self.relationshipString = json["relationship"] as! String
-                    self.photoString = json["photo"] as!String
+                    //let res = try JSONDecoder().decode(IdResponse.self, from: data!)
+                    //print(res)
+                    //var mdata = String(data: data!, encoding: .utf8)
+                    let json = try JSONSerialization.jsonObject(with: data!) as! [String:String]
+                    self.nameString = json["name"]!
+                    //self.nameString = json["name"]!
+                    self.relationshipString = json["relationship"]!
+                    self.photoString = json["photo"]!
                     //let relationship = json["relationship"]!
-                    
                     if !self.nameString.isEmpty{
                         DispatchQueue.main.async {
-                            self.detailLabel.text = "I know who you are"
-                            self.detailLabel.numberOfLines = 1
+                            //self.detailLabel.text = "I know who you are"
+                            //self.detailLabel.numberOfLines = 1
+                            self.detailLabel.text = "Tap the button"
                             self.performSegue(withIdentifier: "ResultSegue", sender: nil)
 
                         }
                         
                     }else{
                         DispatchQueue.main.async {
-                            self.detailLabel.text = "Idk who you are"
-                            self.detailLabel.numberOfLines = 1
+                            self.detailLabel.text = "Tap the button"
+                            let alert = UIAlertController(title: "Failed Identification", message: "Looks like our model doesn't recognize you. Please head to 'Add Voice' and submit more of your voice clips.", preferredStyle: UIAlertController.Style.alert)
+                            // add an action (button)
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                            // show the alert
+                            self.present(alert, animated: true, completion: nil)
+                            //self.detailLabel.text = "Idk who you are"
+                            //self.detailLabel.numberOfLines = 1
                         }
                     }
+                    
 
                     
                 } catch let error as NSError {
