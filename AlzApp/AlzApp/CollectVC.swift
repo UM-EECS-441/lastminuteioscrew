@@ -80,8 +80,6 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             playTapped(playButton!)  // auto play
         }
 
-        
-  
     }
     func prepareRecorder() {
         // check permission first

@@ -9,7 +9,13 @@ import Foundation
 import AVFoundation
 import UIKit
 class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
+    var main_speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(0,"New Speaker","Unknown","")]
+
+
     var audioString = ""
+    var nameString = ""
+    var relationshipString = ""
+    var photoString = ""
     private var audioSession: AVAudioSession!
     private var audioRecorder: AVAudioRecorder!
     private var audioPlayer: AVAudioPlayer!
@@ -22,6 +28,8 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
     private let recstopIcon = UIImage(systemName: "mic.circle.fill")!
     private var currState : StateMachine!
     
+    @IBOutlet weak var collectButton: UIButton!
+    @IBOutlet weak var communityButton: UIButton!
     @IBOutlet weak var recButton: UIButton!
     
     @IBOutlet weak var detailLabel: UILabel!
@@ -45,10 +53,74 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
         audioString = ""
         prepareRecorder()
         recButton.isEnabled = true
+        fetchData()
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchAfterSubmit(_:)), name: Notification.Name(rawValue: "fetchAfterSubmit"), object: nil)
+
+        
+    }
+    @objc func fetchAfterSubmit(_ notification: Notification) {
+        DispatchQueue.main.async {
+            self.collectButton.isEnabled = false
+            self.communityButton.isEnabled = false
+        }
+        let delayTime = DispatchTime.now() + 1.5
+        DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+            self.getSpeakers()
+        })
+    }
+    func getSpeakers() {
+        let requestURL = "https://161.35.116.242/getSpeakersV2/"
+        var request = URLRequest(url: URL(string: requestURL)!)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+            do {
+                self.main_speakers = [(0,"New Speaker","Unknown","")]
+                let json = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
+                for speakerEntry in json["speakers"] as? [[Any]] ?? []{
+                    print(speakerEntry)
+                    self.main_speakers.append((speakerEntry[0] as! Int,speakerEntry[1] as! String, speakerEntry[2] as! String, speakerEntry[3] as! String))
+                }
+
+            } catch let error as NSError {
+                print(error)
+            }
+            DispatchQueue.main.async {
+                self.collectButton.isEnabled = true
+                self.communityButton.isEnabled = true
+            }
+            
+        }
+        task.resume()
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?)
+    {
+        if segue.identifier == "CollectSegue"{
+            let collectVC = segue.destination as! CollectVC
+            collectVC.speakers = main_speakers
+        }
+        if segue.identifier == "CommunitySegue"{
+            let communityVC = segue.destination as! CommunityVC
+            communityVC.speakers = main_speakers
+        }
+        if segue.identifier == "ResultSegue"{
+            let resultVC = segue.destination as! ResultVC
+            resultVC.nameString = nameString
+            resultVC.relationshipString = relationshipString
+            resultVC.photoString = photoString
+        }
+
     }
 
-
-
+    func fetchData(){
+        DispatchQueue.main.async {
+            self.collectButton.isEnabled = false
+            self.communityButton.isEnabled = false
+            
+        }
+        DispatchQueue.main.async {
+            self.getSpeakers()
+        }
+    }
     func prepareRecorder() {
         // check permission first
         audioSession.requestRecordPermission() { allowed in
@@ -100,20 +172,24 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
             let json: [String: Any] = ["audio": audioString]
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
 
-            var request = URLRequest(url: URL(string: "https://161.35.116.242/identify/")!)
+            var request = URLRequest(url: URL(string: "https://161.35.116.242/identifyV2/")!)
             request.httpMethod = "POST"
             request.httpBody = jsonData
 
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
                 do {
                     let json = try JSONSerialization.jsonObject(with: data!) as! [String:String]
-                    let name = json["name"]!
+                    self.nameString = json["name"]!
+                    self.relationshipString = json["relationship"]!
+                    self.photoString = json["photo"]!
                     //let relationship = json["relationship"]!
                     
-                    if !name.isEmpty{
+                    if !self.nameString.isEmpty{
                         DispatchQueue.main.async {
-                            self.detailLabel.text = "You're Peter"
+                            self.detailLabel.text = "I know who you are"
                             self.detailLabel.numberOfLines = 1
+                            self.performSegue(withIdentifier: "ResultSegue", sender: nil)
+
                         }
                         
                     }else{
@@ -128,6 +204,11 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
                     print(error)
                 }
                 self.reset()
+//                DispatchQueue.main.async {
+//                    self.performSegue(withIdentifier: "resultSegue", sender: nil)
+//                }
+            
+                
             }
             task.resume()
 
@@ -149,8 +230,6 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
             //self.recButton.setImage(self.recIcon, for: .normal)
             self.recButton.isEnabled = true
         }
-
-
     }
 
 

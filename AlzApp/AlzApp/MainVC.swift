@@ -20,7 +20,6 @@ class MainVC: UIViewController{
         DispatchQueue.main.async {
             self.getSpeakers()
         }
-        
     }
     
     
@@ -49,7 +48,6 @@ class MainVC: UIViewController{
             let collectVC = navVC?.viewControllers.first as! CollectVC
             collectVC.speakers = main_speakers
         }
-        
 
     }
     func getSpeakers() {
@@ -74,7 +72,8 @@ class MainVC: UIViewController{
             
         }
         task.resume()
-        
     }
 }
-
+protocol ReturnDelegate: UIViewController {
+    func didReturn(_ input_speakers: [(id: Int, name: String)])
+}
