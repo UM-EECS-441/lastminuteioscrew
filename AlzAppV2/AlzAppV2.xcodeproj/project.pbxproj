@@ -3,17 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		5E0551722B1778033BA8ED49 /* Pods_AlzAppV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4396AF8B5BF1D5BFFD7781DF /* Pods_AlzAppV2.framework */; };
 		F11B4017257143FB00A942AD /* SpeakerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B4016257143FB00A942AD /* SpeakerTableCell.swift */; };
-		F159F902256D241100A1BD68 /* default_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F159F901256D241100A1BD68 /* default_pic.png */; };
 		F17979AD256A5897008B09A8 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17979AC256A5897008B09A8 /* CollectVC.swift */; };
 		F17979B0256AB079008B09A8 /* AudioVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17979AF256AB079008B09A8 /* AudioVC.swift */; };
 		F17979B3256AB1AB008B09A8 /* PhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17979B2256AB1AB008B09A8 /* PhotoVC.swift */; };
-		F18C66962568B9F100105FB8 /* Bart_Simpson.png in Resources */ = {isa = PBXBuildFile; fileRef = F18C66952568B9F100105FB8 /* Bart_Simpson.png */; };
 		F18C66992568BFB900105FB8 /* ResultVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F18C66982568BFB900105FB8 /* ResultVC.swift */; };
 		F193545F2561F901004413A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F193545E2561F901004413A5 /* AppDelegate.swift */; };
 		F19354612561F901004413A5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19354602561F901004413A5 /* SceneDelegate.swift */; };
@@ -29,11 +27,9 @@
 		4396AF8B5BF1D5BFFD7781DF /* Pods_AlzAppV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlzAppV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		501548A5FF20DD4A92BC4F4C /* Pods-AlzAppV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlzAppV2.debug.xcconfig"; path = "Target Support Files/Pods-AlzAppV2/Pods-AlzAppV2.debug.xcconfig"; sourceTree = "<group>"; };
 		F11B4016257143FB00A942AD /* SpeakerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerTableCell.swift; sourceTree = "<group>"; };
-		F159F901256D241100A1BD68 /* default_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_pic.png; path = ../../../../default_pic.png; sourceTree = "<group>"; };
 		F17979AC256A5897008B09A8 /* CollectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
 		F17979AF256AB079008B09A8 /* AudioVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioVC.swift; sourceTree = "<group>"; };
 		F17979B2256AB1AB008B09A8 /* PhotoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoVC.swift; sourceTree = "<group>"; };
-		F18C66952568B9F100105FB8 /* Bart_Simpson.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Bart_Simpson.png; path = ../../../../Bart_Simpson.png; sourceTree = "<group>"; };
 		F18C66982568BFB900105FB8 /* ResultVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultVC.swift; sourceTree = "<group>"; };
 		F193545B2561F901004413A5 /* AlzAppV2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AlzAppV2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F193545E2561F901004413A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -64,7 +60,6 @@
 				501548A5FF20DD4A92BC4F4C /* Pods-AlzAppV2.debug.xcconfig */,
 				2CE233C5A31F837F5A2B00C3 /* Pods-AlzAppV2.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -97,8 +92,6 @@
 		F193545D2561F901004413A5 /* AlzAppV2 */ = {
 			isa = PBXGroup;
 			children = (
-				F159F901256D241100A1BD68 /* default_pic.png */,
-				F18C66952568B9F100105FB8 /* Bart_Simpson.png */,
 				F193545E2561F901004413A5 /* AppDelegate.swift */,
 				F19354602561F901004413A5 /* SceneDelegate.swift */,
 				F19354752562B339004413A5 /* MainVC.swift */,
@@ -175,8 +168,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F159F902256D241100A1BD68 /* default_pic.png in Resources */,
-				F18C66962568B9F100105FB8 /* Bart_Simpson.png in Resources */,
 				F193546B2561F905004413A5 /* LaunchScreen.storyboard in Resources */,
 				F19354682561F905004413A5 /* Assets.xcassets in Resources */,
 				F19354662561F901004413A5 /* Main.storyboard in Resources */,

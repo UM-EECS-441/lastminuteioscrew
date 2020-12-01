@@ -86,8 +86,8 @@
                                     <action selector="recTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K34-D3-CrN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the button" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yE-LC-2AP">
-                                <rect key="frame" x="123.5" y="393" width="167.5" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Start identify voice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yE-LC-2AP" userLabel="Detail Label">
+                                <rect key="frame" x="96" y="393" width="222" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Gpx-QF-gpA"/>
                                 </constraints>
@@ -599,7 +599,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f1J-hF-QUr"/>
+        <segue reference="5rt-d6-Vga"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Bart_Simpson.png" width="250" height="373"/>
