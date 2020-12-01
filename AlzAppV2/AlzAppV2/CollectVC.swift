@@ -78,6 +78,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
             photoLabel.isHidden = true
             photoButton.isHidden = true
         }
+        enableSubmit()
     }
     func enableSubmit(){
         if (idSelected == 0 && audioString != "" && photoString != "" && nameInput.hasText && relationshipInput.hasText){
