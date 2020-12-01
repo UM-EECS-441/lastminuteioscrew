@@ -30,6 +30,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     
     func soundActivatedRecorderDidFinishRecording(_ recorder: FDSoundActivatedRecorder, andSaved file: URL) {
         audioFile = file
+        didRecord = true
         finishRecording(success: true)
     }
     
@@ -186,6 +187,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
         currState = StateMachine.recording
         recButton.setImage(recstopIcon, for: .normal)
         recorder.startListening()
+        detailLabel.text = "Stop speaking when ready"
         //audioRecorder.record()
     }
     func writeAudioString(){
@@ -257,7 +259,10 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
                 } catch let error as NSError {
                     print(error)
                 }
-                self.reset()
+                DispatchQueue.main.async {
+                    self.reset()
+                }
+                //self.reset()
 //                DispatchQueue.main.async {
 //                    self.performSegue(withIdentifier: "resultSegue", sender: nil)
 //                }
@@ -271,7 +276,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
 
     @IBAction func recTapped(_ sender: Any) {
         if (currState == StateMachine.recording) {
-            finishRecording(success: true)
+            recorder.stopAndSaveRecording()
         } else {
             startRecording()
         }
@@ -279,6 +284,8 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     func reset(){
         audioString = ""
         currState = StateMachine.start
+        detailLabel.text = "Start identify voice"
+        didRecord = false
         prepareRecorder()
         DispatchQueue.main.async {
             //self.recButton.setImage(self.recIcon, for: .normal)
