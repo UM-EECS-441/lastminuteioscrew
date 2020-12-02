@@ -137,9 +137,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     override func prepare(for segue: UIStoryboardSegue, sender: Any?)
     {
         // turn off automatic voice detection
-        DispatchQueue.main.async {
-            self.recorder.abort()
-        }
+        self.recorder.abort()
         
         if segue.identifier == "CollectSegue"{
             let collectVC = segue.destination as! CollectVC
