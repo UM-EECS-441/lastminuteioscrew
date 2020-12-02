@@ -8,6 +8,7 @@
 import Foundation
 import AVFoundation
 import UIKit
+import FDSoundActivatedRecorder
 
 struct IdResponse: Decodable {
     var name: String
@@ -17,19 +18,36 @@ struct IdResponse: Decodable {
     var score:String
 }
 
-class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
+class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, FDSoundActivatedRecorderDelegate{
+    func soundActivatedRecorderDidStartRecording(_ recorder: FDSoundActivatedRecorder) {
+    }
+    
+    func soundActivatedRecorderDidTimeOut(_ recorder: FDSoundActivatedRecorder) {
+    }
+    
+    func soundActivatedRecorderDidAbort(_ recorder: FDSoundActivatedRecorder) {
+    }
+    
+    func soundActivatedRecorderDidFinishRecording(_ recorder: FDSoundActivatedRecorder, andSaved file: URL) {
+        audioFile = file
+        didRecord = true
+        finishRecording(success: true)
+    }
     var main_speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(0,"New Speaker","Unknown","")]
-
-
+    var always_record = false
     var audioString = ""
     var nameString = ""
     var relationshipString = ""
     var photoString = ""
+
     private var audioSession: AVAudioSession!
-    private var audioRecorder: AVAudioRecorder!
-    private var audioPlayer: AVAudioPlayer!
-    private let audioFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("chatteraudio.m4a")
+//    private var audioRecorder: AVAudioRecorder!
+//    private var audioPlayer: AVAudioPlayer!
+//    private let audioFile = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("chatteraudio.m4a")
+    
     private var didRecord = false
+    private var audioFile: URL!
+    private var recorder: FDSoundActivatedRecorder!
     enum StateMachine {
         case start, playing, recording, paused
     }
@@ -62,6 +80,9 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
         audioString = ""
         prepareRecorder()
         recButton.isEnabled = true
+        if always_record{
+            startRecording()
+        }
         fetchData()
         NotificationCenter.default.addObserver(self, selector: #selector(fetchAfterSubmit(_:)), name: Notification.Name(rawValue: "fetchAfterSubmit"), object: nil)
 
@@ -138,20 +159,22 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
                 self.dismiss(animated: true, completion: nil)
             }
         }
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            //AVFormatIDKey: Int(kAudioFormatMPEGLayer3),
-            AVSampleRateKey: 12000,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-        do {
-            audioRecorder = try AVAudioRecorder(url: audioFile, settings: settings)
-            audioRecorder.delegate = self
-        } catch {
-            print("prepareRecorder: failed")
-            dismiss(animated: true, completion: nil)
-        }
+//        let settings = [
+//            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+//            //AVFormatIDKey: Int(kAudioFormatMPEGLayer3),
+//            AVSampleRateKey: 12000,
+//            AVNumberOfChannelsKey: 1,
+//            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+//        ]
+//        do {
+//            audioRecorder = try AVAudioRecorder(url: audioFile, settings: settings)
+//            audioRecorder.delegate = self
+//        } catch {
+//            print("prepareRecorder: failed")
+//            dismiss(animated: true, completion: nil)
+//        }
+        self.recorder = FDSoundActivatedRecorder()
+        self.recorder.delegate = self
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -163,8 +186,12 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
     func startRecording() {
         currState = StateMachine.recording
         recButton.setImage(recstopIcon, for: .normal)
+        recorder.startListening()
+        DispatchQueue.main.async {
+            self.detailLabel.text = "Stop speaking when ready"
+        }
         
-        audioRecorder.record()
+        //audioRecorder.record()
     }
     func writeAudioString(){
         if (didRecord == true) {
@@ -174,11 +201,12 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
             catch let error as NSError {
                 print(error.localizedDescription)
             }
-            audioRecorder.deleteRecording()  // clean up
+            recorder.abort()
+            //audioRecorder.deleteRecording()  // clean up
         }
     }
     func finishRecording(success: Bool) {
-        audioRecorder.stop()
+        //audioRecorder.stop()
         currState = StateMachine.start
         recButton.setImage(recIcon, for: .normal)
 
@@ -219,12 +247,13 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
                         
                     }else{
                         DispatchQueue.main.async {
-                            self.detailLabel.text = "Tap the button"
+                            self.detailLabel.text = "Cannot identify voice"
                             let alert = UIAlertController(title: "Failed Identification", message: "Looks like our model doesn't recognize you. Please head to 'Add Voice' and submit more of your voice clips.", preferredStyle: UIAlertController.Style.alert)
                             // add an action (button)
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                             // show the alert
                             self.present(alert, animated: true, completion: nil)
+                            self.detailLabel.text = "Start identify voice"
                             //self.detailLabel.text = "Idk who you are"
                             //self.detailLabel.numberOfLines = 1
                         }
@@ -235,7 +264,10 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
                 } catch let error as NSError {
                     print(error)
                 }
-                self.reset()
+                DispatchQueue.main.async {
+                    self.reset()
+                }
+                //self.reset()
 //                DispatchQueue.main.async {
 //                    self.performSegue(withIdentifier: "resultSegue", sender: nil)
 //                }
@@ -251,16 +283,23 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate{
         if (currState == StateMachine.recording) {
             finishRecording(success: true)
         } else {
-            startRecording()
+            if !always_record{
+                startRecording()
+            }
         }
     }
     func reset(){
         audioString = ""
         currState = StateMachine.start
+        didRecord = false
         prepareRecorder()
         DispatchQueue.main.async {
             //self.recButton.setImage(self.recIcon, for: .normal)
+            self.detailLabel.text = "Start identify voice"
             self.recButton.isEnabled = true
+            if self.always_record{
+                self.startRecording()
+            }
         }
     }
 

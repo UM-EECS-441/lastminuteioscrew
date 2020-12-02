@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2328597B029E20598A101FD5 /* Pods_AlzAppV2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 68ABCF0BC4592A6F680F7321 /* Pods_AlzAppV2.framework */; };
 		F11B4017257143FB00A942AD /* SpeakerTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11B4016257143FB00A942AD /* SpeakerTableCell.swift */; };
 		F159F902256D241100A1BD68 /* default_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F159F901256D241100A1BD68 /* default_pic.png */; };
 		F17979AD256A5897008B09A8 /* CollectVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17979AC256A5897008B09A8 /* CollectVC.swift */; };
@@ -24,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		68ABCF0BC4592A6F680F7321 /* Pods_AlzAppV2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlzAppV2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B075772911401D2D7A0640A /* Pods-AlzAppV2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlzAppV2.release.xcconfig"; path = "Target Support Files/Pods-AlzAppV2/Pods-AlzAppV2.release.xcconfig"; sourceTree = "<group>"; };
 		F11B4016257143FB00A942AD /* SpeakerTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeakerTableCell.swift; sourceTree = "<group>"; };
 		F159F901256D241100A1BD68 /* default_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_pic.png; path = ../../../../default_pic.png; sourceTree = "<group>"; };
 		F17979AC256A5897008B09A8 /* CollectVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectVC.swift; sourceTree = "<group>"; };
@@ -40,6 +43,7 @@
 		F193546C2561F905004413A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F19354752562B339004413A5 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
 		F1DBC4F0256FE56700E1376A /* CommunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityVC.swift; sourceTree = "<group>"; };
+		F91ED2ABD8DBFB24C00B59FF /* Pods-AlzAppV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlzAppV2.debug.xcconfig"; path = "Target Support Files/Pods-AlzAppV2/Pods-AlzAppV2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +51,38 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2328597B029E20598A101FD5 /* Pods_AlzAppV2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4A85957D62009ECF08FE80E9 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F91ED2ABD8DBFB24C00B59FF /* Pods-AlzAppV2.debug.xcconfig */,
+				6B075772911401D2D7A0640A /* Pods-AlzAppV2.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		EAA3DA3AD5CC3C1747A084F1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				68ABCF0BC4592A6F680F7321 /* Pods_AlzAppV2.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		F19354522561F901004413A5 = {
 			isa = PBXGroup;
 			children = (
 				F193545D2561F901004413A5 /* AlzAppV2 */,
 				F193545C2561F901004413A5 /* Products */,
+				4A85957D62009ECF08FE80E9 /* Pods */,
+				EAA3DA3AD5CC3C1747A084F1 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -98,9 +123,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F193546F2561F905004413A5 /* Build configuration list for PBXNativeTarget "AlzAppV2" */;
 			buildPhases = (
+				120F21DAEB8E589CD59C036F /* [CP] Check Pods Manifest.lock */,
 				F19354572561F901004413A5 /* Sources */,
 				F19354582561F901004413A5 /* Frameworks */,
 				F19354592561F901004413A5 /* Resources */,
+				4C90B5134B451E5B95292658 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -157,6 +184,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		120F21DAEB8E589CD59C036F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AlzAppV2-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C90B5134B451E5B95292658 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlzAppV2/Pods-AlzAppV2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AlzAppV2/Pods-AlzAppV2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AlzAppV2/Pods-AlzAppV2-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F19354572561F901004413A5 /* Sources */ = {
@@ -315,6 +384,7 @@
 		};
 		F19354702561F905004413A5 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F91ED2ABD8DBFB24C00B59FF /* Pods-AlzAppV2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -335,6 +405,7 @@
 		};
 		F19354712561F905004413A5 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6B075772911401D2D7A0640A /* Pods-AlzAppV2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

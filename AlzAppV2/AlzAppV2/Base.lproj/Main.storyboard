@@ -86,8 +86,8 @@
                                     <action selector="recTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="K34-D3-CrN"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tap the button" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yE-LC-2AP">
-                                <rect key="frame" x="123.5" y="393" width="167.5" height="50"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start identify voice" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3yE-LC-2AP">
+                                <rect key="frame" x="99" y="393" width="216" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Gpx-QF-gpA"/>
                                 </constraints>
@@ -366,7 +366,7 @@
                                 </constraints>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V3L-Tb-JLI">
-                                <rect key="frame" x="219" y="533" width="45" height="54"/>
+                                <rect key="frame" x="219" y="534" width="45" height="54"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="54" id="bMi-nT-Chh"/>
                                 </constraints>
@@ -378,8 +378,8 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MGe-ji-MXH">
-                                <rect key="frame" x="210" y="436" width="63" height="47"/>
-                                <state key="normal" image="photo" catalog="system">
+                                <rect key="frame" x="210" y="436" width="65" height="48"/>
+                                <state key="normal" image="camera" catalog="system">
                                     <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="45"/>
                                 </state>
                                 <connections>
@@ -599,7 +599,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="f1J-hF-QUr"/>
+        <segue reference="5rt-d6-Vga"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Bart_Simpson.png" width="250" height="373"/>
@@ -611,7 +611,6 @@
         <image name="mic" catalog="system" width="108" height="128"/>
         <image name="mic.circle" catalog="system" width="128" height="121"/>
         <image name="person.2.circle" catalog="system" width="128" height="121"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="photo.on.rectangle" catalog="system" width="128" height="96"/>
         <image name="play" catalog="system" width="120" height="128"/>
         <image name="plus.app" catalog="system" width="128" height="114"/>
