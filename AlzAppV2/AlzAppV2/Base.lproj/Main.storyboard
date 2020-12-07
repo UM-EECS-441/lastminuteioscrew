@@ -533,22 +533,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JbV-Gi-8hQ">
-                                <rect key="frame" x="156" y="337" width="102" height="158"/>
+                                <rect key="frame" x="156" y="337" width="102" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="158" id="scB-mX-kgh"/>
+                                    <constraint firstAttribute="height" constant="90" id="scB-mX-kgh"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="40"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Bart_Simpson.png" translatesAutoresizingMaskIntoConstraints="NO" id="b2P-Fo-hnq">
-                                <rect key="frame" x="82" y="30" width="250" height="257"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default_pic.png" translatesAutoresizingMaskIntoConstraints="NO" id="b2P-Fo-hnq">
+                                <rect key="frame" x="-68" y="30" width="550" height="257"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="257" id="FIQ-KG-pSn"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Relationship" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xoL-JU-zAk">
-                                <rect key="frame" x="102" y="524" width="210.5" height="68"/>
+                                <rect key="frame" x="102" y="456" width="210.5" height="68"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="68" id="c8h-Kd-KI3"/>
                                 </constraints>
@@ -558,6 +558,9 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBf-D6-Gnp">
                                 <rect key="frame" x="124" y="668" width="166" height="48"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="48" id="eQz-lF-kbJ"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Not Correct?">
                                     <color key="titleColor" systemColor="systemRedColor"/>
@@ -572,14 +575,12 @@
                         <constraints>
                             <constraint firstItem="b2P-Fo-hnq" firstAttribute="centerX" secondItem="UEd-TF-Gu3" secondAttribute="centerX" id="05F-aG-Omx"/>
                             <constraint firstItem="xoL-JU-zAk" firstAttribute="centerX" secondItem="UEd-TF-Gu3" secondAttribute="centerX" id="1Ry-Te-dRe"/>
-                            <constraint firstItem="Re8-Cv-fAN" firstAttribute="bottom" secondItem="gBf-D6-Gnp" secondAttribute="bottom" constant="92" id="1dg-RU-9CE"/>
                             <constraint firstItem="xoL-JU-zAk" firstAttribute="top" secondItem="JbV-Gi-8hQ" secondAttribute="bottom" constant="29" id="2sg-2J-rLy"/>
-                            <constraint firstItem="gBf-D6-Gnp" firstAttribute="top" secondItem="xoL-JU-zAk" secondAttribute="bottom" constant="76" id="6Vw-fE-9kY"/>
                             <constraint firstItem="JbV-Gi-8hQ" firstAttribute="centerX" secondItem="UEd-TF-Gu3" secondAttribute="centerX" id="BLs-EY-dnm"/>
+                            <constraint firstItem="Re8-Cv-fAN" firstAttribute="bottom" secondItem="gBf-D6-Gnp" secondAttribute="bottom" constant="92" id="C1r-Xq-l4j"/>
+                            <constraint firstItem="gBf-D6-Gnp" firstAttribute="centerX" secondItem="UEd-TF-Gu3" secondAttribute="centerX" id="OXk-Mv-neH"/>
                             <constraint firstItem="JbV-Gi-8hQ" firstAttribute="top" secondItem="b2P-Fo-hnq" secondAttribute="bottom" constant="50" id="Zw9-Es-fIC"/>
-                            <constraint firstItem="gBf-D6-Gnp" firstAttribute="leading" secondItem="Re8-Cv-fAN" secondAttribute="leading" constant="124" id="aFa-ME-qhg"/>
                             <constraint firstItem="b2P-Fo-hnq" firstAttribute="top" secondItem="Re8-Cv-fAN" secondAttribute="top" constant="30" id="ac5-US-O51"/>
-                            <constraint firstItem="Re8-Cv-fAN" firstAttribute="trailing" secondItem="gBf-D6-Gnp" secondAttribute="trailing" constant="124" id="jcO-Z3-ZYe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Result" id="PMW-eh-Wv2"/>
@@ -617,7 +618,6 @@
         <segue reference="f1J-hF-QUr"/>
     </inferredMetricsTieBreakers>
     <resources>
-        <image name="Bart_Simpson.png" width="250" height="373"/>
         <image name="camera" catalog="system" width="128" height="94"/>
         <image name="default_pic.png" width="550" height="742"/>
         <image name="gobackward.10" catalog="system" width="121" height="128"/>

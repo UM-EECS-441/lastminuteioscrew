@@ -19,6 +19,7 @@
 		F19354682561F905004413A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F19354672561F905004413A5 /* Assets.xcassets */; };
 		F193546B2561F905004413A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F19354692561F905004413A5 /* LaunchScreen.storyboard */; };
 		F19354762562B339004413A5 /* MainVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F19354752562B339004413A5 /* MainVC.swift */; };
+		F19F616E257E874E00401400 /* default_pic.png in Resources */ = {isa = PBXBuildFile; fileRef = F19F616D257E874E00401400 /* default_pic.png */; };
 		F1DBC4F1256FE56700E1376A /* CommunityVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1DBC4F0256FE56700E1376A /* CommunityVC.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,7 @@
 		F193546A2561F905004413A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F193546C2561F905004413A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F19354752562B339004413A5 /* MainVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainVC.swift; sourceTree = "<group>"; };
+		F19F616D257E874E00401400 /* default_pic.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = default_pic.png; path = ../../../../default_pic.png; sourceTree = "<group>"; };
 		F1DBC4F0256FE56700E1376A /* CommunityVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityVC.swift; sourceTree = "<group>"; };
 		F91ED2ABD8DBFB24C00B59FF /* Pods-AlzAppV2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlzAppV2.debug.xcconfig"; path = "Target Support Files/Pods-AlzAppV2/Pods-AlzAppV2.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -92,6 +94,7 @@
 		F193545D2561F901004413A5 /* AlzAppV2 */ = {
 			isa = PBXGroup;
 			children = (
+				F19F616D257E874E00401400 /* default_pic.png */,
 				F193545E2561F901004413A5 /* AppDelegate.swift */,
 				F19354602561F901004413A5 /* SceneDelegate.swift */,
 				F19354752562B339004413A5 /* MainVC.swift */,
@@ -170,6 +173,7 @@
 			files = (
 				F193546B2561F905004413A5 /* LaunchScreen.storyboard in Resources */,
 				F19354682561F905004413A5 /* Assets.xcassets in Resources */,
+				F19F616E257E874E00401400 /* default_pic.png in Resources */,
 				F19354662561F901004413A5 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
