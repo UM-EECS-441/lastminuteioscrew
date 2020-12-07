@@ -62,7 +62,9 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     
     @IBOutlet weak var collectButton: UIButton!
     @IBOutlet weak var communityButton: UIButton!
+    
     @IBOutlet weak var recButton: UIButton!
+    
     
     @IBOutlet weak var detailLabel: UILabel!
     override func viewDidLoad() {
@@ -136,6 +138,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     {
         // turn off automatic voice detection
         self.recorder.abort()
+        self.recButton.isEnabled = false
         
         if segue.identifier == "CollectSegue"{
             let collectVC = segue.destination as! CollectVC
@@ -175,7 +178,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
                 // delay automatic voice detection
                 let delayTime = DispatchTime.now() + 1.5
                 DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
-                    self.detailLabel.text = "Start identify voice"
+                    self.detailLabel.text = "Start identifying voice"
                     self.recButton.isEnabled = true
                     self.recorder.startListening()
 
@@ -190,6 +193,16 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     func resultDidReturn() {
         enableRecording()
     }
+    
+    @IBAction func recTapped(_ sender: Any) {
+        if (currState == StateMachine.recording) {
+            recorder.stopAndSaveRecording()
+        } else {
+            recorder.startRecording()
+        }
+    }
+    
+    
     func fetchData(){
         DispatchQueue.main.async {
             self.collectButton.isEnabled = false
@@ -290,7 +303,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                             // show the alert
                             self.present(alert, animated: true, completion: nil)
-                            self.detailLabel.text = "Start identify voice"
+                            self.detailLabel.text = "Start identifying voice"
                         }
                     }
                     
@@ -311,13 +324,6 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
         }
     }
 
-    @IBAction func recTapped(_ sender: Any) {
-        if (currState == StateMachine.recording) {
-            recorder.stopAndSaveRecording()
-        } else {
-            recorder.startRecording()
-        }
-    }
 }
 
 protocol ResultReturnDelegate: UIViewController {
