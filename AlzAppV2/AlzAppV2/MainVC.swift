@@ -17,7 +17,7 @@ struct IdResponse: Decodable {
     var score:String
 }
 
-class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, FDSoundActivatedRecorderDelegate{
+class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, FDSoundActivatedRecorderDelegate, ResultReturnDelegate{
     func soundActivatedRecorderDidStartRecording(_ recorder: FDSoundActivatedRecorder) {
         DispatchQueue.main.async {
             self.currState = StateMachine.recording
@@ -40,7 +40,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     }
     
     var main_speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(0,"New Speaker","Unknown","")]
-    var always_record = true
+
     var audioString = ""
     var nameString = ""
     var relationshipString = ""
@@ -86,10 +86,9 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
         prepareRecorder()
         
         recButton.isEnabled = true
-        
-        if always_record{
-            recorder.startListening()
-        }
+
+        recorder.startListening()
+
         returnToMain = false
         
         fetchData()
@@ -151,6 +150,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
             resultVC.nameString = nameString
             resultVC.relationshipString = relationshipString
             resultVC.photoString = photoString
+            resultVC.resultReturnDelegate = self
         }
         returnToMain = true
 
@@ -158,12 +158,15 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     
     // turn on automatic voice detection when returning to main menu
     // from other scenes
-    override func viewDidAppear(_ animated: Bool) {
+    
+    func enableRecording(){
         DispatchQueue.main.async {
             if self.returnToMain {
                 self.audioString = ""
                 self.currState = StateMachine.start
-                self.detailLabel.text = "Start identify voice"
+                if self.recButton.isEnabled == false{
+                    self.detailLabel.text = "Loading recorder"
+                }
                 self.recButton.setImage(self.recIcon, for: .normal)
                 self.didRecord = false
                 self.prepareRecorder()
@@ -171,16 +174,21 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
                 // delay automatic voice detection
                 let delayTime = DispatchTime.now() + 1.5
                 DispatchQueue.main.asyncAfter(deadline: delayTime, execute: {
+                    self.detailLabel.text = "Start identify voice"
                     self.recButton.isEnabled = true
-                    if self.always_record{
-                        self.recorder.startListening()
-                    }
+                    self.recorder.startListening()
+
                 })
             }
         }
         
     }
-
+    override func viewDidAppear(_ animated: Bool) {
+        enableRecording()
+    }
+    func resultDidReturn() {
+        enableRecording()
+    }
     func fetchData(){
         DispatchQueue.main.async {
             self.collectButton.isEnabled = false
@@ -290,10 +298,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
                 } catch let error as NSError {
                     print(error)
                 }
-                DispatchQueue.main.async {
-                    self.reset()
-                }
-                //self.reset()
+
 //                DispatchQueue.main.async {
 //                    self.performSegue(withIdentifier: "resultSegue", sender: nil)
 //                }
@@ -312,22 +317,8 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
             recorder.startRecording()
         }
     }
-    func reset(){
-        audioString = ""
-        currState = StateMachine.start
-        detailLabel.text = "Start identify voice"
-        recButton.setImage(recIcon, for: .normal)
-        didRecord = false
-        prepareRecorder()
-        DispatchQueue.main.async {
-            //self.recButton.setImage(self.recIcon, for: .normal)
-            self.recButton.isEnabled = true
-            if self.always_record{
-                self.recorder.startListening()
-            }
-            
-        }
-    }
+}
 
-
+protocol ResultReturnDelegate: UIViewController {
+    func resultDidReturn()
 }

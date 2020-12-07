@@ -16,6 +16,7 @@ class ResultVC: UIViewController{
     var photoString :String! = ""
     var nameString = ""
     var relationshipString = ""
+    weak var resultReturnDelegate: ResultReturnDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,9 @@ class ResultVC: UIViewController{
             let loadedImage = base64toImage(img: photoString)!.resizeImage(targetSize: CGSize(width: 250, height: 257))
             resultImage.image = loadedImage
         }
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        resultReturnDelegate?.resultDidReturn()
     }
     func base64toImage(img: String) -> UIImage? {
         if (img == "") {
@@ -36,3 +40,5 @@ class ResultVC: UIViewController{
     }
     
 }
+
+
