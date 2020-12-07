@@ -556,20 +556,35 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gBf-D6-Gnp">
+                                <rect key="frame" x="124" y="668" width="166" height="48"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="30"/>
+                                <state key="normal" title="Not Correct?">
+                                    <color key="titleColor" systemColor="systemRedColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="IncorrectTapped:" destination="MOd-Tc-a2W" eventType="touchUpInside" id="SW8-cV-7cH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Re8-Cv-fAN"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="b2P-Fo-hnq" firstAttribute="centerX" secondItem="UEd-TF-Gu3" secondAttribute="centerX" id="05F-aG-Omx"/>
                             <constraint firstItem="xoL-JU-zAk" firstAttribute="centerX" secondItem="UEd-TF-Gu3" secondAttribute="centerX" id="1Ry-Te-dRe"/>
+                            <constraint firstItem="Re8-Cv-fAN" firstAttribute="bottom" secondItem="gBf-D6-Gnp" secondAttribute="bottom" constant="92" id="1dg-RU-9CE"/>
                             <constraint firstItem="xoL-JU-zAk" firstAttribute="top" secondItem="JbV-Gi-8hQ" secondAttribute="bottom" constant="29" id="2sg-2J-rLy"/>
+                            <constraint firstItem="gBf-D6-Gnp" firstAttribute="top" secondItem="xoL-JU-zAk" secondAttribute="bottom" constant="76" id="6Vw-fE-9kY"/>
                             <constraint firstItem="JbV-Gi-8hQ" firstAttribute="centerX" secondItem="UEd-TF-Gu3" secondAttribute="centerX" id="BLs-EY-dnm"/>
                             <constraint firstItem="JbV-Gi-8hQ" firstAttribute="top" secondItem="b2P-Fo-hnq" secondAttribute="bottom" constant="50" id="Zw9-Es-fIC"/>
+                            <constraint firstItem="gBf-D6-Gnp" firstAttribute="leading" secondItem="Re8-Cv-fAN" secondAttribute="leading" constant="124" id="aFa-ME-qhg"/>
                             <constraint firstItem="b2P-Fo-hnq" firstAttribute="top" secondItem="Re8-Cv-fAN" secondAttribute="top" constant="30" id="ac5-US-O51"/>
+                            <constraint firstItem="Re8-Cv-fAN" firstAttribute="trailing" secondItem="gBf-D6-Gnp" secondAttribute="trailing" constant="124" id="jcO-Z3-ZYe"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Result" id="PMW-eh-Wv2"/>
                     <connections>
+                        <outlet property="IncorrectButton" destination="gBf-D6-Gnp" id="hfA-EN-xnW"/>
                         <outlet property="nameLabel" destination="JbV-Gi-8hQ" id="Sui-qg-vCT"/>
                         <outlet property="relationshipLabel" destination="xoL-JU-zAk" id="rZs-Xn-TqR"/>
                         <outlet property="resultImage" destination="b2P-Fo-hnq" id="13Z-wv-mDQ"/>
@@ -616,6 +631,9 @@
         <image name="plus.app" catalog="system" width="128" height="114"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

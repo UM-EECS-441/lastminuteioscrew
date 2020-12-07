@@ -151,6 +151,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
             resultVC.relationshipString = relationshipString
             resultVC.photoString = photoString
             resultVC.resultReturnDelegate = self
+            resultVC.showIncorrect = true
         }
         returnToMain = true
 
