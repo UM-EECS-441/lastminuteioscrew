@@ -25,8 +25,8 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
     @IBOutlet weak var photoButton: UIButton!
     @IBOutlet weak var submitButton: UIButton!
     
-    private var idSelected = 0
-    var speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(0,"New Speaker","Unknown","")]
+    private var idSelected = -1
+    var speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(-1,"New Speaker","Unknown","")]
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,7 +63,7 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         idSelected = speakers[row].id as Int
-        if (idSelected == 0){
+        if (idSelected == -1){
             nameLabel.isHidden = false
             relationshipLabel.isHidden = false
             nameInput.isHidden = false
@@ -130,10 +130,12 @@ class CollectVC: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource,
                                    "photo": photoString]
         let jsonData = try? JSONSerialization.data(withJSONObject: json)
 
-        var request = URLRequest(url: URL(string: "https://161.35.116.242/addVoiceV2/")!)
+        //var request = URLRequest(url: URL(string: "https://161.35.116.242/addVoiceV2/")!)
+        var request = URLRequest(url: URL(string: "https://18.217.201.244/api/ios/addvoice/")!)
         request.httpMethod = "POST"
         request.httpBody = jsonData
-
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
+        request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")        // the expected response is also JSON
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let _ = data, error == nil else {
                 print("NETWORKING ERROR")
