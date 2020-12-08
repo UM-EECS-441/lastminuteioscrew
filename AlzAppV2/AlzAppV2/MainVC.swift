@@ -39,7 +39,7 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
         finishRecording(success: true)
     }
     
-    var main_speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(0,"New Speaker","Unknown","")]
+    var main_speakers:[(id: Int, name: String, relationship:String, photo:String)] = [(-1,"New Speaker","Unknown","")]
 
     var audioString = ""
     var nameString = ""
@@ -108,16 +108,23 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
     }
     
     func getSpeakers() {
-        let requestURL = "https://161.35.116.242/getSpeakersV2/"
+        //let requestURL = "https://161.35.116.242/getSpeakersV2/"
+        let requestURL = "https://18.217.201.244/getspeakers/"
         var request = URLRequest(url: URL(string: requestURL)!)
         request.httpMethod = "GET"
         let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
             do {
-                self.main_speakers = [(0,"New Speaker","Unknown","")]
+                self.main_speakers = [(-1,"New Speaker","Unknown","")]
                 let json = try JSONSerialization.jsonObject(with: data!) as! [String:Any]
-                for speakerEntry in json["speakers"] as? [[Any]] ?? []{
+//                for speakerEntry in json["speakers"] as? [[Any]] ?? []{
+//                    print(speakerEntry)
+//                    self.main_speakers.append((speakerEntry[0] as! Int,speakerEntry[1] as! String, speakerEntry[2] as! String, speakerEntry[3] as! String))
+//                    //self.main_speakers.append((speakerEntry["id"] as! Int,speakerEntry["name"] as! String, speakerEntry["relationship"] as! String, speakerEntry["photo"] as! String))
+//                }
+                for speakerEntry in json["speakers"] as! [[String : Any]]{
                     print(speakerEntry)
-                    self.main_speakers.append((speakerEntry[0] as! Int,speakerEntry[1] as! String, speakerEntry[2] as! String, speakerEntry[3] as! String))
+                    //self.main_speakers.append((speakerEntry[0] as! Int,speakerEntry[1] as! String, speakerEntry[2] as! String, speakerEntry[3] as! String))
+                    self.main_speakers.append((speakerEntry["speakerID"] as! Int,speakerEntry["fullname"] as! String, speakerEntry["relationship"] as! String, speakerEntry["photo"] as! String))
                 }
 
             } catch let error as NSError {
@@ -258,9 +265,13 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
             let json: [String: Any] = ["audio": audioString]
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
 
-            var identify_request = URLRequest(url: URL(string: "https://161.35.116.242/identifyV2/")!)
+            //var identify_request = URLRequest(url: URL(string: "https://161.35.116.242/identifyV2/")!)
+            var identify_request = URLRequest(url: URL(string: "https://18.217.201.244/api/ios/identify/")!)
             identify_request.httpMethod = "POST"
             identify_request.httpBody = jsonData
+            
+            identify_request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Content-Type")  // the request is JSON
+            identify_request.setValue("application/json; charset=utf-8", forHTTPHeaderField: "Accept")        // the expected response is also JSON
 
             let task = URLSession.shared.dataTask(with: identify_request) { (data, response, error) in
                 do {
@@ -279,7 +290,6 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
                             //self.detailLabel.numberOfLines = 1
                             self.detailLabel.text = "Successfully identified"
                             self.performSegue(withIdentifier: "ResultSegue", sender: nil)
-
                         }
                         
                     }else{
@@ -290,7 +300,6 @@ class MainVC: UIViewController,AVAudioRecorderDelegate, AVAudioPlayerDelegate, F
                             alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
                             // show the alert
                             self.present(alert, animated: true, completion: nil)
-                            self.detailLabel.text = "Start identify voice"
                         }
                     }
                     

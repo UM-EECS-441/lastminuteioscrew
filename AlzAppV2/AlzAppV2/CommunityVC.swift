@@ -13,7 +13,7 @@ class CommunityVC:UITableViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        speakers = speakers.filter { $0.id != 0}
+        speakers = speakers.filter { $0.id != -1}
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         // how many sections are in table
