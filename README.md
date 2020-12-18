@@ -1,23 +1,21 @@
-# 
-# EECS441 F20 Last Minute iOS Crew
+# UM EECS441 F20 Last Minute iOS Crew
 
-| Gradesheet | Team Info |  Wiki |  Trello   |
-|:----------:|:---------:|:-----:|:---------:|
-|![grades]|![about]|![tech]|![process]|
-|[Team Grade Sheet][grade sheet]|[Team Commitment Contract][about_page]|[Project Documentation][tech_page]|[Agile Management Board][process_page]|
+| Demo  |  Wiki |  Trello  |
+|:-----:|:-----:|:--------:|
+|![demo]|![wiki]|![process]|
+|[Demo Video][demo_page]|[Project Documentation][wiki_page]|[Agile Management Board][process_page]|
 
-[grades]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/grades3.png "Grade Sheet"
-[about]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/team.png "Team Info"
-<!-- [setup]: https://github.com/CAEN/michigan-covid19-check/blob/dev/public/tools.png "Setup and Install" -->
-[tech]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/wiki.png "Wiki"
-[process]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/board.png "Board"
-[grade sheet]: https://docs.google.com/spreadsheets/d/1kXUonHn2B0Z1pyymFnsoyvqRPkA1DHxwwtpDfdZcER0/edit?usp=sharing
-[about_page]: https://github.com/UM-EECS-441/lastminuteioscrew/blob/master/TeamCommitmentContract.pdf
-<!-- [setup_page]: https://github.com/CAEN/michigan-covid19-check/wiki/Setup-and-Install) -->
-[tech_page]: https://github.com/UM-EECS-441/lastminuteioscrew/wiki
+![Elevator Pitch](https://github.com/UM-EECS-441/labs/blob/master/docs/img/F20/lastminuteioscrew.png)
+![Team](https://github.com/UM-EECS-441/labs/blob/master/docs/img/F20/lastminuteioscrew_team.png)
+
+[demo]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/video.png "Demo Video"
+[wiki]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/wiki.png "Wiki"
+[process]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/trello.png "Trello Board"
+[demo_page]: https://www.youtube.com/watch?v=4gAhKTFQl1U
+[wiki_page]: https://github.com/UM-EECS-441/lastminuteioscrew/wiki
 [process_page]: https://trello.com/b/QGgr3MnW/last-minute-ios-crew
 
-
+<!--
 RUNNING THE FLASK APP 
 1. create a virtual environment  https://eecs485staff.github.io/p1-insta485-static/setup_virtual_env.html
 2. install sqlite3 
@@ -29,4 +27,4 @@ macos: "brew install sqlite3 curl"
 6. run "pip install -r requirements.txt"
 7. run "pip install -e ." 
 8. start the flask app with ./bin/forgetMeNotRun
-
+-->
