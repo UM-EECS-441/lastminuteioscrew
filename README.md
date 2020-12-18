@@ -7,9 +7,6 @@
 ![Elevator Pitch](https://github.com/UM-EECS-441/labs/blob/master/docs/img/F20/lastminuteioscrew.png)
 ![Team](https://github.com/UM-EECS-441/labs/blob/master/docs/img/F20/lastminuteioscrew_team.png)
 
-[demo]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/video.png "Demo Video"
-[wiki]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/wiki.png "Wiki"
-[process]: https://github.com/UM-EECS-441/labs/blob/master/docs/img/admin/trello.png "Trello Board"
 [demo_page]: https://www.youtube.com/watch?v=4gAhKTFQl1U
 [wiki_page]: https://github.com/UM-EECS-441/lastminuteioscrew/wiki
 [process_page]: https://trello.com/b/QGgr3MnW/last-minute-ios-crew
